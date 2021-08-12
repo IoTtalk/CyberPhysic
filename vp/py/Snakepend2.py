@@ -64,8 +64,11 @@ def scene_init():
     global timer, pendulums, scene
     global t
     # 產生動畫視窗、天花板
+#    scene = canvas(width=600, height=600, x=0, y=0, 
+#                   background=vector(0.1, 0.5, 0.1))
+
     scene = canvas(width=600, height=600, x=0, y=0, 
-                   background=vector(0.1, 0.5, 0.1))
+                   background=color.white)
     scene.camera.pos = vector(-1.5 * width, 0.5 * width, width)
     scene.camera.axis = vector(1.5 * width, -0.5 * width, -width)
     roof = box(pos=vector(0, (width + size) / 2, 0), length=width, height=size, width = width / 2,

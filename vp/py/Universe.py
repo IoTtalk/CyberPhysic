@@ -33,6 +33,9 @@ dt = 1.0 / freq   # 更新間隔(second)
 # 事件旗標區
 reset_flag = False
 
+axis = []
+labels = []
+
 # 重置
 def reset_earth():
     global earth, reset_flag
@@ -45,12 +48,19 @@ def reset_earth():
 
 # 初始化場景
 def scene_init():
-    global scene, earth, sun, height, earth_radius, label_gravity
-    scene = display(width=800, height=700, center = vec(0, 0, 0), background=vec(0, 0, 0))
+    global scene, earth, sun, height, earth_radius, label_gravity, axis, labels
+    scene = display(width=800, height=700, center = vec(0, 0, 0), background=vec(0, 0, 0), autoscale = False, range=height)
+#    scene = display(width=800, height=700, center = vec(0, 0, 0), background=color.white)
     label_gravity = label( pos=vec(0.8*height,0.8*height,0), height=25, text='Gravity: {:.3f}\nSpeed: {:.3f}'.format(gravity,speed))
     
     sun_light = local_light(pos = vec(0,0,0),color=color.white)
     more_sun_light = local_light(pos = vec(0,0,0),color=color.white)
+
+    for radius in range(2, 15):
+        axis.append(ring(pos=vec(0,0,-5), axis=vec(0,0,1), radius=radius*2, thickness=0.1, color=color.gray(0.1)))
+        
+    for radius in range(2, 15):
+        labels.append(label(pos=vec(0, radius*2 + 0.5, -5), text=str(radius*2), height=20, border=12, font='monospace', color=color.white, box=False, opacity=0))
 
     sun = sphere(
         pos = vec(0, 0, 0), 

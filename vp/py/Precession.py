@@ -27,19 +27,18 @@ def scene_init():
     alpha = 0.0
     label1 = label( pos=vec(0,0.2,0), text='M= '+M )
     label3 = label( pos=vec(0,0.3,0), text='speed= '+mag(Omega) )
-    label4 = label( pos=vec(0,0.35,0), text= 'procession= Mgr/Iw')
-    label2 = label( pos=vec(0,0.25,0), text='procession= ' )
+    label2 = label( pos=vec(0,0.25,0), text='precession= ' )
 
 def main():
-    global disk_len,alpha,Omega,procession,shaft,disk,M
-    procession = M * g * lr / I / mag(Omega)
-    label2.text='procession= '+procession
+    global disk_len,alpha,Omega,precession,shaft,disk,M
+    precession = M * g * lr / I / mag(Omega)
+    label2.text='precession= '+precession
     delta_angle = mag(Omega) * dt
     
     if alpha >= 2*pi:
         alpha=0
     else:
-        alpha += procession*dt*10
+        alpha += precession*dt*10
     Omega_temp = vector(l*cos(theta)*sin(alpha),l*sin(theta),l*cos(theta)*cos(alpha))
     Omega.axis = mag(Omega)*hat(Omega_temp)
     shaft.axis = l*hat(Omega_temp)

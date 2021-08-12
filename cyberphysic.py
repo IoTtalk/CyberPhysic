@@ -92,7 +92,7 @@ class rcHandler(tornado.web.RequestHandler):
             print('idf_list', idf_list)
             self.render("da/mobile_rc.html", odm_name=odm_name, p_id=p_id, in_do_id=in_do_id, idf_list=idf_list, odf_list=odf_list, idf_para_list=idf_para_list)
         else:
-            self.write("Please rescan QRCode.");
+            self.write("Please rescan QRCode.")
 
 class daHandler(tornado.web.RequestHandler):
     def get(self, **kwargs):
@@ -118,7 +118,8 @@ if __name__ == "__main__":
     global vp_list
     print('working directory:',os.getcwd())
     vp_file_list = listdir(join(os.getcwd(), 'vp/py'))
-    vp_list = list(map(lambda x: x[:-3],vp_file_list))
+    vp_list = list(map(lambda x: x[:-3],filter(lambda x: x != 'Ball-collision.py' and x != 'Ball-Slide.py' and x != 'Ball-Spring.py' 
+        and x != 'Ball-Throw.py' and x != 'Snakepend2.py',vp_file_list)))
     vp_list.sort()
     print('vp_list:',vp_list)
     tornado.ioloop.IOLoop.current().start()
