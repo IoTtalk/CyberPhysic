@@ -57,16 +57,29 @@ function get_proj_exception(){
 }
 
 function delete_project(){
-    $.ajax({
-        url: cyberphysic_server+ '/delete_project/' + p_id + '/' + device_mac_addr,
-        type: 'DELETE',
-        cache: false,
-        dataType: 'json',
-        error:function(e){
-            console.log(url, ' error, e= ',e);
-        },
-        success:function(response){
-            console.log(url, ' success, response=', response);
-        },
-    });
+    var url = cyberphysic_server + '/delete_project/' + p_id + '/' + device_mac_addr;
+    superagent
+        .delete(url)
+        .set('Accept', 'application/json')
+        .then(res => {
+            console.log(url, ' success, response=', res)
+        })
+        .catch(err => {
+            console.log(url, ' error, e= ',err);// err.message, err.response
+        });
 }
+
+// function delete_project(){
+//     $.ajax({
+//         url: cyberphysic_server+ '/delete_project/' + p_id + '/' + device_mac_addr,
+//         type: 'DELETE',
+//         cache: false,
+//         dataType: 'json',
+//         error:function(e){
+//             console.log(url, ' error, e= ',e);
+//         },
+//         success:function(response){
+//             console.log(url, ' success, response=', response);
+//         },
+//     });
+// }

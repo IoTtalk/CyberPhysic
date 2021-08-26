@@ -128,7 +128,7 @@ def delete_project_handler(p_id, mac_addr):
 def deregister(mac_addr):
     print('deregister mac_addr ',mac_addr)
     r = requests.delete(config.iottalk_server + config.csm_path + '/' + mac_addr)
-    if r.status_code != 200: raise CSMError(r.text)
+    if r.status_code != 200 and r.status_code != 400: raise CSMError(r.text)
     return True
 
 def post_to_ccm(url, data):

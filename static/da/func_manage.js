@@ -173,7 +173,7 @@ function save_snakepend_func(){
 
 function check_function_exist(f_name){
     var data = {'function_name':f_name};
-    var response = my_ajax(':9999/QRpage/check_function_exist',data);   
+    var response = my_ajax('/csm/QRpage/check_function_exist',data);   
     return response;
 }
 
@@ -191,7 +191,7 @@ function save_connection_configuration(idf_index){
         };
         var function_setting = {'setting_list':info,'p_id':project_info.p_id};
         var data = {'function_setting':function_setting};
-        my_ajax(':7788/save_connection_configuration',data);
+        my_ajax('/ccm/save_connection_configuration',data);
     }   
 }
 
@@ -206,13 +206,13 @@ function save_function_info(func_name, df_id, fnvt_idx, func_content, is_switch,
         'non_df_argument':non_df_argument 
     }
     var data = {'fn_info':fn_info};
-    var response = my_ajax(':7788/save_function_info',data);
+    var response = my_ajax('/ccm/save_function_info',data);
     console.log("save function info res:",response);
     return response;
 }
 
 function save_a_temp_function(fnvt_idx){
     var data = {'fnvt_idx':fnvt_idx};
-    var response = my_ajax(':7788/save_a_temp_function',data);
+    var response = my_ajax('/ccm/save_a_temp_function',data);
     return response;
 }
